@@ -1,0 +1,42 @@
+GET http://localhost:8042/api/pokemon
+content-type: application/jsons
+
+###
+
+POST http://localhost:8042/api/pokemon
+content-type: application/json
+
+{
+    "id":"001",
+    "name":"Squirtle",
+    "species":"tinyturtle",
+    "pokemonType":["water"],
+    "height":"1ft 08inches",
+    "weight":20,
+    "desc":"After birth, its back swells and harderns into a shell. Powerfully sprays foam from its mouth."
+}
+
+###
+
+GET http://localhost:8042/api/pokemon/3
+content-type: application/json
+
+###
+
+PUT http://localhost:8042/api/pokemon
+content-type: application/json
+
+{
+    "id":"001",
+    "name":"Squirtle",
+    "species":"tinyturtle",
+    "pokemonType":["water"],
+    "height":"1ft 08inches",
+    "weight":20,
+    "desc":"After birth, its back swells and harderns into a shell. Powerfully sprays foam from its mouth."
+}
+
+###
+
+DELETE http://localhost:8042/api/pokemon/001
+content-type: application/json
