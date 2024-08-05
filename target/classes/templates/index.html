@@ -16,8 +16,8 @@
         </thead>
         <tbody>
           <tr th:each="pokemon : ${allPokemon}">
-             <td th:text="${pokemon.Id}">Id</td>
-             <td th:text="${pokemon.Name}"><a th:text="${pokemon.Id}" href="/Id">Name</a></td>
+             <td th:text="${pokemon.Id}"></td>
+             <td><a th:href="@{/{id}(id=${pokemon.Id})}"><p th:text="${pokemon.Name}"></p></a></td>
           </tr>
         </tbody>
     </table>
