@@ -1,0 +1,68 @@
+html { width: 100%; background-color: #fff1fe; }
+
+@font-face {
+		font-family: "PixelifySans";
+		font-weight: normal;
+		src: url("\/fonts\/PixelifySans-Regular.ttf");
+	}
+
+body: {
+	font-family: "PixelifySans";
+	-webkit-font-smoothing: none;
+}
+
+nav{
+	padding-bottom: 2rem;
+}
+
+nav h1{
+	display:inline;
+	padding: 0 .75rem 0 0;
+}
+
+nav a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover{
+	cursor:pointer;
+}
+
+.content {
+	border: 2px solid black;
+	width: 780px;
+	height: 665px;
+	margin: 0 auto;
+	background-color: #fff1fe;
+}
+
+.pokemon {
+	background-color: #fff1fe;
+	color: black;
+	border: 5px solid black;
+	
+	width: 768px;
+	height: 650px;
+	margin: .25rem auto;
+}
+
+.no-shadow{
+	box-shadow: none;
+	border: 3px solid black;
+}
+
+.icon{
+	display: inline;
+	float: left;
+	/* height: 150px; */
+	padding-right:2rem;
+}
+
+.icon img{
+	height: 100px;
+}
+
+.info {
+	display: inline;
+}

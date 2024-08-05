@@ -29,7 +29,7 @@ public class DexApp {
 		PokemonService pokemonService = new PokemonService();
 		pokemonType.add("electric");
 		return args -> {
-			Pokemon pokemon = new Pokemon(999, "Pikachu", "Mouse", pokemonType, "0ft 0inches", 12, "An electric rat.");
+			Pokemon pokemon = new Pokemon(25, "Pikachu", "Mouse", pokemonType, "0\' 0\"", 12, "An electric rat.");
 			pokemonService.CreatePokemon(pokemon);
 			log.info("Pokemon: " + pokemon.toString());
 		};

@@ -7,7 +7,7 @@ POST http://localhost:8042/api/pokemon
 content-type: application/json
 
 {
-    "id":"001",
+    "id":"007",
     "name":"Squirtle",
     "species":"tinyturtle",
     "pokemonType":["water"],

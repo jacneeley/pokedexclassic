@@ -4,22 +4,41 @@
 <head>
 <meta charset="utf-8"/>
 <title>PokeDex Classic</title>
+<link th:href="@{/styles/global.css}" rel="stylesheet" />
+<style th:inline="css" type="text/css" media="screen, print">
+	@font-face {
+			font-family: "PixelifySans";
+			font-weight: normal;
+			src: url{[[@{/fonts/PixelifySans-Regular.ttf}]]};
+		}
+	
+	body{
+		font-family: "PixelifySans";
+	}
+</style>
 </head>
 <body>
- <h2>PokeDex Classic</h2>
-    <table>
-        <thead>
-         <tr>
-           <th>Id</th>
-           <th>Name</th>
-        </tr>
-        </thead>
-        <tbody>
-          <tr th:each="pokemon : ${allPokemon}">
-             <td th:text="${pokemon.Id}"></td>
-             <td><a th:href="@{/{id}(id=${pokemon.Id})}"><p th:text="${pokemon.Name}"></p></a></td>
-          </tr>
-        </tbody>
-    </table>
+	<nav>
+		<h1><a href="/">PokeDex Classic</a></h1>
+	 	<a href="/">about</a>
+	</nav>
+    <div class="content">
+		<div class="pokemon no-shadow">
+			<table>
+		        <thead>
+		         <tr>
+		           <th>Id</th>
+		           <th>Name</th>
+		        </tr>
+		        </thead>
+		        <tbody>
+		          <tr th:each="pokemon : ${allPokemon}">
+		             <td th:text="${pokemon.Id}"></td>
+		             <td><a th:href="@{/{id}(id=${pokemon.Id})}"><p th:text="${pokemon.Name}"></p></a></td>
+		          </tr>
+		        </tbody>
+		    </table>
+		</div>
+	</div>
  </body>
 </html>

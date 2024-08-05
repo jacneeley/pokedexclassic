@@ -4,20 +4,44 @@
 <head>
 <meta charset="utf-8"/>
 <title th:text ="${pokemon.Name}"></title>
+<!--<link rel="icon" type="image/x-icon" th:href="@{/{id}(id=${pokemon.getImg()})}">-->
+<link th:href="@{/styles/global.css}" rel="stylesheet" />
+<style th:inline="css" type="text/css" media="screen, print">
+	@font-face {
+			font-family: "PixelifySans";
+			font-weight: normal;
+			src: url{[[@{/fonts/PixelifySans-Regular.ttf}]]};
+		}
+	
+	body{
+		font-family: "PixelifySans";
+	}
+</style>
 </head>
 <body>
- 	<div>
-		<img alt="image goes here..."/>
-		<h3 th:text="${'NO. ' + pokemon.Id}"></h3>
-	</div>
-	<div class="info">
-		<h3 th:text="${pokemon.Name.toUpperCase()}"></h3>
-	    <h3 th:text="${pokemon.Species.toUpperCase()}"></h3>	
-		<h3 th:text="${'HT ' + pokemon.Height}"></h3>
-		<h3 th:text="${'WT ' + pokemon.Weight}"></h3>	
-	</div>
-	<div class="desc">
-		<p th:text="${pokemon.Desc}"></p>
+	<nav>
+		<h1><a href="/">PokeDex Classic</a></h1>
+	 	<a href="/">about</a>
+	</nav>
+ 	<div class="pokemon">
+		<div class="icon">
+			<img th:src="${pokemon.getImg()}" 
+			alt="image goes here..."/>
+			<h3 th:text="${pokemon.Id}"></h3>
+		</div>
+		<div class="info">
+			<h3 th:text="${pokemon.Name.toUpperCase()}"></h3>
+		    <h3 th:text="${pokemon.Species.toUpperCase()}"></h3>	
+			<h3 th:text="${'HT ' + pokemon.Height}"></h3>
+			<h3 th:text="${'WT ' + pokemon.Weight}"></h3>
+		</div>
+		<hr />
+		<div class="desc">
+			<p th:text="${pokemon.Desc}"></p>
+		</div>
+		<a href="/"><< Home</a>
+		<a href=""><< Prev</a>
+		<a href="">Next >></a>
 	</div>
  </body>
 </html>

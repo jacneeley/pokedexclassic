@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,15 +60,15 @@ public class PokemonController {
 	}
 	
 	@GetMapping("/{Id}")
-	public ResponseEntity<PokemonResponse> getPokemon(@PathVariable Integer Id) {
+	public ResponseEntity<PokeResponse> getPokemon(@PathVariable Integer Id) {
 		Pokemon pokemon = _pokeSrv.GetPokemon(Id);
 		
 		if(!_pokeSrv.pokemonExists(Id)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		PokemonResponse response = new PokemonResponse(
-				pokemon.getId(),
+		PokeResponse response = new PokeResponse(
+				this.formatId(pokemon.getId()),
 				pokemon.getName(),
 				pokemon.getSpecies(),
 				pokemon.getPokemonType(),
@@ -138,5 +137,25 @@ public class PokemonController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	public String formatId(Integer Id) {
+		if(Id > 999) {
+			throw new IllegalArgumentException("Id is out of bounds...");
+		}
+		else if(Id < 100){
+			if(Id >= 10) {
+				return "NO. 0" + Integer.toString(Id);
+			}
+			else {
+				return "NO. 00" + Integer.toString(Id);
+			}
+		}
+		else if (Id > 99) {
+			return "NO. " + Integer.toString(Id);
+		}
+		else {
+			throw new IllegalArgumentException("Bad Request...");
+		}
 	}
 }

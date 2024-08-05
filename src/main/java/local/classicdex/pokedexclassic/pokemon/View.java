@@ -28,7 +28,7 @@ public class View {
 	
 	@GetMapping("/{Id}")
 	public String viewPokemon(Model model, @PathVariable Integer Id) {
-		ResponseEntity<PokemonResponse> response = _pokeController.getPokemon(Id);
+		ResponseEntity<PokeResponse> response = _pokeController.getPokemon(Id);
 		model.addAttribute("pokemon",response.getBody());
 		return "pokemon";
 	}
