@@ -3,14 +3,21 @@
    xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8"/>
-<title th:text ="${pokemon.Name}">PokeDex Classic Name</title>
+<title th:text ="${pokemon.Name}"></title>
 </head>
 <body>
- <h2 th:text="${pokemon.Name}"></h2>
-    <p th:text="${pokemon.Species}"></p>
-	<p th:text="${pokemon.PokemonType}"></p>
-	<p th:text="${pokemon.Height}"></p>
-	<p th:text="${pokemon.Weight}"></p>
-	<p th:text="${pokemon.Desc}"></p>
+ 	<div>
+		<img alt="image goes here..."/>
+		<h3 th:text="${'NO. ' + pokemon.Id}"></h3>
+	</div>
+	<div class="info">
+		<h3 th:text="${pokemon.Name.toUpperCase()}"></h3>
+	    <h3 th:text="${pokemon.Species.toUpperCase()}"></h3>	
+		<h3 th:text="${'HT ' + pokemon.Height}"></h3>
+		<h3 th:text="${'WT ' + pokemon.Weight}"></h3>	
+	</div>
+	<div class="desc">
+		<p th:text="${pokemon.Desc}"></p>
+	</div>
  </body>
 </html>
