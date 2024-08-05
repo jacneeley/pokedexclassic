@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import local.classicdex.pokedexclassic.pokemon.Pokemon;
+import local.classicdex.pokedexclassic.pokemon.PokemonService;
 
 @SpringBootApplication
 public class DexApp {
@@ -25,9 +26,11 @@ public class DexApp {
 	@Bean
 	CommandLineRunner runline() {//test pokemon object
 		List<String> pokemonType = new ArrayList<String>();
+		PokemonService pokemonService = new PokemonService();
 		pokemonType.add("electric");
 		return args -> {
 			Pokemon pokemon = new Pokemon(999, "Pikachu", "Mouse", pokemonType, "0ft 0inches", 12, "An electric rat.");
+			pokemonService.CreatePokemon(pokemon);
 			log.info("Pokemon: " + pokemon.toString());
 		};
 	}

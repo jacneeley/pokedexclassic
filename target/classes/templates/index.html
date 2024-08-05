@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+   xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>PokeDex Classic</title>
+</head>
+<body>
+ <h2>PokeDex Classic</h2>
+    <table>
+        <thead>
+         <tr>
+           <th>Id</th>
+           <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr th:each="pokemon : ${allPokemon}">
+             <td th:text="${pokemon.Id}">Id</td>
+             <td th:text="${pokemon.Name}"><a th:text="${pokemon.Id}" href="/Id">Name</a></td>
+          </tr>
+        </tbody>
+    </table>
+ </body>
+</html>

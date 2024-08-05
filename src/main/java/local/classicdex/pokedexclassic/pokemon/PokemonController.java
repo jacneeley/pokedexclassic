@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +35,7 @@ public class PokemonController {
 	@GetMapping("")
 	public ResponseEntity<List<PokemonResponse>> findAll(){
 		try {
+			
 			List<Pokemon> getAllPokemon = _pokeSrv.GetAllPokemon();
 			List<PokemonResponse> result = new ArrayList<PokemonResponse>();
 			
@@ -52,7 +54,7 @@ public class PokemonController {
 						pokemon.getDesc());
 				result.add(response);
 			}
-			return new ResponseEntity<List<PokemonResponse>>(result, HttpStatus.OK);
+			return ResponseEntity.ok(result);
 		} catch(Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -75,7 +77,7 @@ public class PokemonController {
 				pokemon.getWeight(),
 				pokemon.getDesc());
 		
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return ResponseEntity.ok(response);
 	}
 	
 	@SuppressWarnings("rawtypes")

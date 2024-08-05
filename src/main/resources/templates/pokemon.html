@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+   xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title th:text ="${pokemon.Name}">PokeDex Classic Name</title>
+</head>
+<body>
+ <h2 th:text="${pokemon.Name}"></h2>
+    <p th:text="${pokemon.Species}"></p>
+	<p th:text="${pokemon.PokemonType}"></p>
+	<p th:text="${pokemon.Height}"></p>
+	<p th:text="${pokemon.Weight}"></p>
+	<p th:text="${pokemon.Desc}"></p>
+ </body>
+</html>
