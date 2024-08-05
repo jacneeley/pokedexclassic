@@ -1,4 +1,10 @@
-html { width: 100%; background-color: #fff1fe; }
+html { 
+	width: 100%; 
+	background-color: #fff1fe;  
+	background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); 
+	z-index: 2; 
+	background-size: 100% 2px, 3px 100%;
+}
 
 @font-face {
 		font-family: "PixelifySans";
@@ -9,7 +15,9 @@ html { width: 100%; background-color: #fff1fe; }
 body: {
 	font-family: "PixelifySans";
 	-webkit-font-smoothing: none;
+	overflow: hidden;
 }
+
 
 nav{
 	padding-bottom: 2rem;
@@ -29,22 +37,33 @@ a:hover{
 	cursor:pointer;
 }
 
+p {
+	font-size: larger;
+}
+
+li,ul,span,div {
+	font-size: large;
+}
+
 .content {
 	border: 2px solid black;
 	width: 780px;
 	height: 665px;
 	margin: 0 auto;
-	background-color: #fff1fe;
+	
 }
 
 .pokemon {
-	background-color: #fff1fe;
 	color: black;
 	border: 5px solid black;
-	
 	width: 768px;
 	height: 650px;
 	margin: .25rem auto;
+	overflow:scroll;
+}
+
+pokemon img, p{
+	display: inline;
 }
 
 .no-shadow{
@@ -65,4 +84,16 @@ a:hover{
 
 .info {
 	display: inline;
+}
+
+.desc {
+	height: 380px;
+}
+
+.bottom-nav{
+	text-align: center;
+}
+
+.bottom-nav a{
+	padding: 1rem;
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+   xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>PokeDex Classic</title>
+<link th:href="@{/styles/global.css}" rel="stylesheet" />
+<style th:inline="css" type="text/css" media="screen, print">
+	@font-face {
+			font-family: "PixelifySans";
+			font-weight: normal;
+			src: url{[[@{/fonts/PixelifySans-Regular.ttf}]]};
+		}
+	
+	body{
+		font-family: "PixelifySans";
+	}
+</style>
+</head>
+<body class="">
+	<nav>
+		<h1><a href="/">PokeDex Classic</a></h1>
+	 	<a href="/about">about</a>
+	</nav>
+    <div class="content">
+		<div class="pokemon no-shadow">
+			<h2>About:</h2>
+			<p>POKeDEX Classic is a web app that aims to recreate the original POKeDEX from GEN 1 (Red/Blue/Green/Yellow) that runs in the browser. </p>
+			<h3>Philosophy:</h3>
+			<p>A fast, simple, responsive web app with little to no JS and no annoying cookies, trackers, etc.</p>
+			<p>An almost 1:1 recreation - recreate the look and feel of the POKeDEX from the GEN 1 games with some creative liberaties taken for ease of development, accessibility, and or just because.</p>
+			<p>Make something fun and cool - These days there's a lot of junk on the internet trying to sell you stuff. We need more junk sites that are just fun to use.</p>
+			<h3>Disclaimers:</h3>
+			<ul>1. I am NOT a POKeMON fan. I have played Diamond/Pearl & Emerald. That is it. I just like the aesthetics of the GEN 1 and the gameboy color.</ul>
+			<ul>2. This is NOT a comprehensive database of POKeDEX. This is just a toy app for GEN 1. If you want a comprehensive DB check out <a href="https://pokeapi.co/">POKeAPI</a>.</ul>		
+		</div>
+	</div>
+ </body>
+</html>

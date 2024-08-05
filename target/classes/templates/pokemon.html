@@ -18,10 +18,10 @@
 	}
 </style>
 </head>
-<body>
+<body class="">
 	<nav>
 		<h1><a href="/">PokeDex Classic</a></h1>
-	 	<a href="/">about</a>
+	 	<a href="/about">about</a>
 	</nav>
  	<div class="pokemon">
 		<div class="icon">
@@ -39,9 +39,11 @@
 		<div class="desc">
 			<p th:text="${pokemon.Desc}"></p>
 		</div>
-		<a href="/"><< Home</a>
-		<a href=""><< Prev</a>
-		<a href="">Next >></a>
+		<div class="bottom-nav">
+			<a href="/"><< Home</a>
+			<a href=""><< Prev</a>
+			<a href="">Next >></a>
+		</div>
 	</div>
  </body>
 </html>

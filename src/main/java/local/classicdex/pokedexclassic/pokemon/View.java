@@ -32,4 +32,9 @@ public class View {
 		model.addAttribute("pokemon",response.getBody());
 		return "pokemon";
 	}
+	
+	@GetMapping("/about")
+	public String viewAbout() {
+		return "about";
+	}
 }
