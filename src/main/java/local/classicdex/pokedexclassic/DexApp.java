@@ -23,15 +23,15 @@ public class DexApp {
 		log.info("App Startup Successful");
 	}
 	
-	@Bean
-	CommandLineRunner runline() {//test pokemon object
-		List<String> pokemonType = new ArrayList<String>();
-		PokemonService pokemonService = new PokemonService();
-		pokemonType.add("electric");
-		return args -> {
-			Pokemon pokemon = new Pokemon(25, "Pikachu", "Mouse", pokemonType, "0\' 0\"", 12, "An electric rat.");
-			pokemonService.CreatePokemon(pokemon);
-			log.info("Pokemon: " + pokemon.toString());
-		};
-	}
+//	@Bean
+//	CommandLineRunner runline() {//test pokemon object
+//		List<String> pokemonType = new ArrayList<String>();
+//		PokemonService pokemonService = new PokemonService();
+//		pokemonType.add("electric");
+//		return args -> {
+//			Pokemon pokemon = new Pokemon(25, "Pikachu", "Mouse", pokemonType, "0\' 0\"", 12, "An electric rat.");
+//			pokemonService.CreatePokemon(pokemon);
+//			log.info("Pokemon: " + pokemon.toString());
+//		};
+//	}
 }

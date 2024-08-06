@@ -13,7 +13,11 @@ public record PokeResponse(
 	) {
 	
 	public String getImg() {
-		String id = Id.split("NO.")[1].strip();
-		return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + Integer.valueOf(id) + ".png";
+		String id = this.Id.split("NO.")[1].strip();
+		return "assets/pokesprites/" + Integer.valueOf(id) + ".png";
+	}
+	
+	public String[] parseDesc() {
+		return this.Desc.split("\n\n");
 	}
 }
