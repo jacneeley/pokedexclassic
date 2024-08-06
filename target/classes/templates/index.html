@@ -23,7 +23,7 @@
 	 	<a href="/about">about</a>
 	</nav>
     <div class="content">
-		<div class="pokemon no-shadow">
+		<div class="sub-content no-shadow">
 			<table>
 		        <thead>
 		         <tr>
@@ -33,7 +33,7 @@
 		        <tbody>
 		          <tr th:each="pokemon : ${allPokemon}">
 		             <td><p th:text="${pokemon.Id}"></p></td>
-		             <td><a th:href="@{/{id}(id=${pokemon.Id})}"><img alt="pokeball" /><p th:text="${pokemon.Name.toUpperCase()}"></p></a></td>
+		             <td class=".pokedex-entry" ><a th:href="@{/{id}(id=${pokemon.Id})}"><img alt="pokeball" /><p th:text="${pokemon.Name.toUpperCase()}"></p></a></td>
 		          </tr>
 		        </tbody>
 		    </table>
