@@ -15,7 +15,6 @@ html {
 body: {
 	font-family: "PixelifySans";
 	-webkit-font-smoothing: none;
-	overflow: hidden;
 }
 
 
@@ -31,6 +30,7 @@ nav h1{
 nav a {
 	text-decoration: none;
 	color: black;
+	font-size: 30px;
 }
 
 a:hover{
@@ -43,6 +43,14 @@ p {
 
 li,ul {
 	font-size: 20px;
+}
+
+th h2{
+	font-size: 35px;
+}
+
+td p{
+	font-size:30px;
 }
 
 .content {
@@ -59,10 +67,9 @@ li,ul {
 	width: 768px;
 	height: 650px;
 	margin: .25rem auto;
-	overflow:scroll;
 }
 
-pokedex-entry img, p{
+pokedex-entry img{
 	display: inline;
 }
 
@@ -79,19 +86,26 @@ pokedex-entry img, p{
 }
 
 .icon img{
-	height: 115px;
+	height: 250px;
+	margin-top: 1.5rem;
 }
 
 .info {
 	display: inline;
 }
 
-.desc {
-	height: 380px;
+.icon p {
+	font-size: 30px;
+	text-align: center;
+	margin-top: -.25rem;
+}
+
+.info p{
+	font-size: 35px;
 }
 
 .desc p {
-	display: block;
+	font-size:30px;
 }
 
 .bottom-nav{
@@ -100,4 +114,19 @@ pokedex-entry img, p{
 
 .bottom-nav a{
 	padding: 1rem;
+	font-size: 25px;
+}
+
+.pokeball{
+	width: 20px;
+	height: 20px;
+	padding-right: .25rem;		
+}
+
+.no-overflow !important{
+	overflow: hidden;
+}
+
+.overflow !important{
+	overflow: scroll;
 }

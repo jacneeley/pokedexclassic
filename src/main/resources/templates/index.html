@@ -17,23 +17,28 @@
 	}
 </style>
 </head>
-<body class="">
+<body class="no-overflow">
 	<nav>
 		<h1><a href="/">POKeDEX Classic</a></h1>
 	 	<a href="/about">about</a>
 	</nav>
-    <div class="content">
+    <div class="content overflow">
 		<div class="sub-content no-shadow">
 			<table>
 		        <thead>
 		         <tr>
-		           <th><h3>CONTENTS</h3></th>
+		           <th><h2>CONTENTS</h2></th>
 		        </tr>
 		        </thead>
 		        <tbody>
 		          <tr th:each="pokemon : ${allPokemon}">
-		             <td><p th:text="${pokemon.Id}"></p></td>
-		             <td class=".pokedex-entry" ><a th:href="@{/{id}(id=${pokemon.Id})}"><img alt="pokeball" /><p th:text="${pokemon.Name.toUpperCase()}"></p></a></td>
+		             <td><p th:text="${pokemon.formatId()}"></p></td>
+		             <td class=".pokedex-entry" >
+						<a th:href="@{/{id}(id=${pokemon.Id})}">
+							<img class="pokeball" th:src="@{assets/misc/pokeball.png}" alt="pokeball" />
+							<p style="display:inline;" th:text="${pokemon.Name.toUpperCase()}"></p>
+						</a>
+					</td>
 		          </tr>
 		        </tbody>
 		    </table>

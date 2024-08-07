@@ -3,7 +3,7 @@
    xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8"/>
-<title th:text ="${pokemon.Name}"></title>
+<title th:text ="${pokemon.Name.toUpperCase()}"></title>
 <!--<link rel="icon" type="image/x-icon" th:href="@{/{id}(id=${pokemon.getImg()})}">-->
 <link th:href="@{/styles/global.css}" rel="stylesheet" />
 <style th:inline="css" type="text/css" media="screen, print">
@@ -18,22 +18,22 @@
 	}
 </style>
 </head>
-<body class="">
+<body class="overflow">
 	<nav>
 		<h1><a href="/">POKeDEX Classic</a></h1>
 	 	<a href="/about">about</a>
 	</nav>
- 	<div class="sub-content">
+ 	<div class="sub-content no-overflow ">
 		<div class="icon">
 			<img th:src="@{{img}(img=${pokemon.getImg()})}" 
 			th:alt="${pokemon.Name.toUpperCase()}"/>
-			<h3 th:text="${pokemon.Id}"></h3>
+			<p th:text="${pokemon.formatId()}"></p>
 		</div>
 		<div class="info">
-			<h3 th:text="${pokemon.Name.toUpperCase()}"></h3>
-		    <h3 th:text="${pokemon.Species.toUpperCase()}"></h3>	
-			<h3 th:text="${'HT ' + pokemon.Height}"></h3>
-			<h3 th:text="${'WT ' + pokemon.Weight}"></h3>
+			<p th:text="${pokemon.Name.toUpperCase()}"></p>
+		    <p th:text="${pokemon.Species.toUpperCase()}"></p>	
+			<p th:text="${'HT ' + pokemon.getHeightFt()}"></p>
+			<p th:text="${'WT ' + pokemon.getWeightLbs() + 'lb'}"></p>
 		</div>
 		<hr />
 		<div class="desc">

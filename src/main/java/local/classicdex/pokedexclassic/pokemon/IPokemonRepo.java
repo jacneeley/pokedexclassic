@@ -2,10 +2,10 @@ package local.classicdex.pokedexclassic.pokemon;
 
 import java.util.List;
 
-public interface IPokemonSrv {
+public interface IPokemonRepo {
 	public List<Pokemon>GetAllPokemon();
 	public List<Pokemon>FindAllByType();
-	public Pokemon GetPokemon(Integer Id);
+	public Pokemon FindById(Integer Id);
 	void CreatePokemon(Pokemon pokemon);
 	void UpsertPokemon(Pokemon pokemon);
 	void DeletePokemon(Integer Id);

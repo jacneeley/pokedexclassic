@@ -12,9 +12,9 @@ public record PokemonRequest(
 		String name,
 		String species,
 		List<String> pokemonType,
-		String height,
+		double height,
 		@Positive
-		int weight,
+		double weight,
 		String desc) {
 			public PokemonRequest {
 				if(id.equals(0) || id == null){

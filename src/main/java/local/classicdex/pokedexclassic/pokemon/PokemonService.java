@@ -13,9 +13,14 @@ public class PokemonService implements IPokemonSrv{
 	
 	@Override
 	public List<Pokemon> GetAllPokemon() {
-		// TODO Auto-generated method stub
 		List<Pokemon> pokemons = new ArrayList<Pokemon>(_pokemon.values());
 		return pokemons;
+	}
+	
+	@Override
+	public List<Pokemon> FindAllByType() {
+		List<Pokemon> pokemon = new ArrayList<Pokemon>(_pokemon.values());
+		return pokemon;
 	}
 
 	@Override
@@ -39,7 +44,7 @@ public class PokemonService implements IPokemonSrv{
 	}
 
 	@Override
-	public boolean pokemonExists(Integer Id) {
+	public boolean PokemonExists(Integer Id) {
 		return _pokemon.containsKey(Id);
 	}
 }

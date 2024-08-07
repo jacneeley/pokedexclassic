@@ -8,8 +8,8 @@ public class Pokemon {
 	private String Name;
 	private String Species;
 	private List<String> PokemonType;
-	private String Height;
-	private int Weight;
+	private double Height;
+	private double Weight;
 	private String Desc;
 	
 	public Integer getId() {
@@ -28,11 +28,11 @@ public class Pokemon {
 		return PokemonType;
 	}
 	
-	public String getHeight() {
+	public double getHeight() {
 		return Height;
 	}
 	
-	public int getWeight() {
+	public double getWeight() {
 		return Weight;
 	}
 	
@@ -45,8 +45,8 @@ public class Pokemon {
 			String name, 
 			String species, 
 			List<String> pokemonType, 
-			String height, 
-			int weight,
+			double height, 
+			double weight,
 			String desc) 
 	{
 		super();

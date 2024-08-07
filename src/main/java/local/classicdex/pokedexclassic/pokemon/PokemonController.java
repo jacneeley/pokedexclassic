@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import local.classicdex.pokedexclassic.DexApp;
+import local.classicdex.pokedexclassic.pokemon.exceptions.NoDataFoundException;
 
 @RestController
 @RequestMapping("/api/pokemon")
@@ -60,15 +61,15 @@ public class PokemonController {
 	}
 	
 	@GetMapping("/{Id}")
-	public ResponseEntity<PokeResponse> getPokemon(@PathVariable Integer Id) {
+	public ResponseEntity<PokemonResponse> getPokemon(@PathVariable Integer Id) {
 		Pokemon pokemon = _pokeSrv.GetPokemon(Id);
 		
-		if(!_pokeSrv.pokemonExists(Id)) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		if(!_pokeSrv.PokemonExists(Id)) {
+			throw new NoDataFoundException();
 		}
 		
-		PokeResponse response = new PokeResponse(
-				this.formatId(pokemon.getId()),
+		PokemonResponse response = new PokemonResponse(
+				pokemon.getId(),
 				pokemon.getName(),
 				pokemon.getSpecies(),
 				pokemon.getPokemonType(),
@@ -115,7 +116,7 @@ public class PokemonController {
 					request.weight(),
 					request.desc() );
 			
-			if(_pokeSrv.pokemonExists(pokemon.getId())) {
+			if(_pokeSrv.PokemonExists(pokemon.getId())) {
 				return createPokemon(request);
 			}
 			else {
@@ -132,30 +133,10 @@ public class PokemonController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{Id}")
 	public ResponseEntity deletePokemon(@PathVariable Integer Id) {
-		if(_pokeSrv.pokemonExists(Id)) {
+		if(_pokeSrv.PokemonExists(Id)) {
 			_pokeSrv.DeletePokemon(Id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
-	
-	public String formatId(Integer Id) {
-		if(Id > 999) {
-			throw new IllegalArgumentException("Id is out of bounds...");
-		}
-		else if(Id < 100){
-			if(Id >= 10) {
-				return "NO. 0" + Integer.toString(Id);
-			}
-			else {
-				return "NO. 00" + Integer.toString(Id);
-			}
-		}
-		else if (Id > 99) {
-			return "NO. " + Integer.toString(Id);
-		}
-		else {
-			throw new IllegalArgumentException("Bad Request...");
-		}
+		throw new NoDataFoundException();
 	}
 }
