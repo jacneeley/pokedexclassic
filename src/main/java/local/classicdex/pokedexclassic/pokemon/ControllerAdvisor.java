@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import local.classicdex.pokedexclassic.pokemon.exceptions.InternalErrorException;
 import local.classicdex.pokedexclassic.pokemon.exceptions.NoDataFoundException;
 
 @ControllerAdvice
@@ -26,7 +27,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler{
 			NoDataFoundException ex, WebRequest request){
 		Map<String, Object> body = new LinkedHashMap<>();
 		body.put("timestamp", LocalDateTime.now());
-		body.put("message", "not found...");
+		body.put("message", "No Pokemon Data Was Found...");
 		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
 	}
 	
@@ -49,5 +50,14 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler{
 		body.put("errors", errors);
 		
 		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(InternalErrorException.class)
+	public ResponseEntity<Object> handleInternalError(
+			InternalErrorException ex, WebRequest request){
+		Map<String, Object> body = new LinkedHashMap<>();
+		body.put("timestamp", LocalDateTime.now());
+		body.put("message", "INTERNAL SERVER ERROR");
+		return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

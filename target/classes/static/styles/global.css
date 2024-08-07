@@ -15,6 +15,7 @@ html {
 body: {
 	font-family: "PixelifySans";
 	-webkit-font-smoothing: none;
+	overflow: hidden
 }
 
 
@@ -67,6 +68,7 @@ td p{
 	width: 768px;
 	height: 650px;
 	margin: .25rem auto;
+	overflow-y:scroll;
 }
 
 pokedex-entry img{

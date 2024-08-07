@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import local.classicdex.pokedexclassic.DexApp;
+import local.classicdex.pokedexclassic.pokemon.exceptions.InternalErrorException;
 import local.classicdex.pokedexclassic.pokemon.exceptions.NoDataFoundException;
 
 @RestController
@@ -32,15 +33,15 @@ public class PokemonController {
 		this._pokeSrv = pokeSrv;
 	}
 	
-	@GetMapping("")
-	public ResponseEntity<List<PokemonResponse>> findAll(){
+	@GetMapping("/")
+	public List<PokemonResponse> findAll(){
 		try {
 			
 			List<Pokemon> getAllPokemon = _pokeSrv.GetAllPokemon();
 			List<PokemonResponse> result = new ArrayList<PokemonResponse>();
 			
 			if(getAllPokemon.isEmpty()){
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+				throw new NoDataFoundException();
 			}
 			
 			for (var pokemon : getAllPokemon) {
@@ -54,14 +55,14 @@ public class PokemonController {
 						pokemon.getDesc());
 				result.add(response);
 			}
-			return ResponseEntity.ok(result);
+			return ResponseEntity.ok(result).getBody();
 		} catch(Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new NoDataFoundException();
 		}
 	}
 	
 	@GetMapping("/{Id}")
-	public ResponseEntity<PokemonResponse> getPokemon(@PathVariable Integer Id) {
+	public PokemonResponse getPokemon(@PathVariable Integer Id) {
 		Pokemon pokemon = _pokeSrv.GetPokemon(Id);
 		
 		if(!_pokeSrv.PokemonExists(Id)) {
@@ -77,13 +78,12 @@ public class PokemonController {
 				pokemon.getWeight(),
 				pokemon.getDesc());
 		
-		return ResponseEntity.ok(response);
+		return ResponseEntity.ok(response).getBody();
 	}
 	
-	@SuppressWarnings("rawtypes")
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("")
-	public ResponseEntity createPokemon(@Valid @RequestBody PokemonRequest request) {
+	public ResponseEntity<Object> createPokemon(@Valid @RequestBody PokemonRequest request) {
 		try {
 			Pokemon pokemon = new Pokemon(
 					request.id(),
@@ -102,10 +102,9 @@ public class PokemonController {
 		}
 	}
 	
-	@SuppressWarnings("rawtypes")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PutMapping("")
-	public ResponseEntity upsertPokemon(@Valid @RequestBody PokemonRequest request) {
+	public ResponseEntity<Object> upsertPokemon(@Valid @RequestBody PokemonRequest request) {
 		try {
 			Pokemon pokemon = new Pokemon(
 					request.id(),
@@ -129,10 +128,9 @@ public class PokemonController {
 		}
 	}
 	
-	@SuppressWarnings("rawtypes")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{Id}")
-	public ResponseEntity deletePokemon(@PathVariable Integer Id) {
+	public ResponseEntity<Object> deletePokemon(@PathVariable Integer Id) {
 		if(_pokeSrv.PokemonExists(Id)) {
 			_pokeSrv.DeletePokemon(Id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

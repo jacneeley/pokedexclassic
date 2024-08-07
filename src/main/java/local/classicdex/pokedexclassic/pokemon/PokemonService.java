@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import local.classicdex.pokedexclassic.pokemon.exceptions.NoDataFoundException;
+
 @Service
 public class PokemonService implements IPokemonSrv{
 	
@@ -13,8 +15,13 @@ public class PokemonService implements IPokemonSrv{
 	
 	@Override
 	public List<Pokemon> GetAllPokemon() {
-		List<Pokemon> pokemons = new ArrayList<Pokemon>(_pokemon.values());
-		return pokemons;
+		try {
+			List<Pokemon> pokemons = new ArrayList<Pokemon>(_pokemon.values());
+			return pokemons;
+		}
+		catch (Exception ex) {
+			throw new NoDataFoundException();
+		}
 	}
 	
 	@Override
