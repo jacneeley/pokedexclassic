@@ -82,4 +82,9 @@ public class Pokemon {
 		return "Pokemon [Id=" + Id + ", Name=" + Name + ", Species=" + Species + ", PokemonType=" + PokemonType
 				+ ", Height=" + Height + ", Weight=" + Weight + ", Desc=" + Desc + "]";
 	}
+	
+	public String listToString() {
+		String types = String.join(",", PokemonType);
+		return types;
+	}
 }

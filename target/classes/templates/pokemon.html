@@ -41,9 +41,10 @@
 			<p th:text="${pokemon.parseDesc()[1]}"></p>
 		</div>
 		<div class="bottom-nav">
+			<a th:href="@{/{id}(id=${pokemon.Id - 1})}"><< Prev</a>
 			<a href="/"><< Home</a>
-			<a href=""><< Prev</a>
-			<a href="">Next >></a>
+			<a th:if="${pokemon.isLastOne()}" style="display:none;"></a>
+			<a th:unless="${pokemon.isLastOne()}" th:href="@{/{id}(id=${pokemon.Id + 1})}">Next >></a>
 		</div>
 	</div>
  </body>

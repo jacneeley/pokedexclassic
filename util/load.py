@@ -41,7 +41,7 @@ for i in range(1,152):
 			"desc": desc
 		}
 		print(p)
-		requests.post(url="http://localhost:8042/api/pokemon", json = p)
+		requests.post(url="http://localhost:8042/api/pokemon", json = p)		
 		break
 	except:
 		continue

@@ -21,15 +21,15 @@ public class View {
 	
 	@GetMapping("/")
 	public String viewAllPokemon(Model model) {
-		List<PokemonResponse> response = _pokeController.findAll();
-		model.addAttribute("allPokemon", response);
+		ResponseEntity<List<PokemonResponse>> response = _pokeController.findAll();
+		model.addAttribute("allPokemon", response.getBody());
 		return "index";
 	}
 	
 	@GetMapping("/{Id}")
 	public String viewPokemon(Model model, @PathVariable Integer Id) {
-		PokemonResponse response = _pokeController.getPokemon(Id);
-		model.addAttribute("pokemon",response);
+		ResponseEntity<PokemonResponse> response = _pokeController.getPokemon(Id);
+		model.addAttribute("pokemon",response.getBody());
 		return "pokemon";
 	}
 	

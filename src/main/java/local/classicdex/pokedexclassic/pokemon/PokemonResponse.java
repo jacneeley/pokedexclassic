@@ -47,4 +47,12 @@ public record PokemonResponse(
 	public double getHeightFt() {
 		return Math.round(this.Height * .328);
 	}
+	
+	public boolean isFirstOne() {
+		return Integer.valueOf(Id).equals(1);
+	}
+	
+	public boolean isLastOne() {
+		return Integer.valueOf(Id).equals(151);
+	}
 }

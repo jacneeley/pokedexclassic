@@ -2,6 +2,8 @@ package local.classicdex.pokedexclassic.pokemon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -34,51 +36,46 @@ public class PokemonController {
 	}
 	
 	@GetMapping("/")
-	public List<PokemonResponse> findAll(){
-		try {
-			
-			List<Pokemon> getAllPokemon = _pokeSrv.GetAllPokemon();
-			List<PokemonResponse> result = new ArrayList<PokemonResponse>();
-			
-			if(getAllPokemon.isEmpty()){
-				throw new NoDataFoundException();
-			}
-			
-			for (var pokemon : getAllPokemon) {
-				PokemonResponse response = new PokemonResponse(
-						pokemon.getId(),
-						pokemon.getName(),
-						pokemon.getSpecies(),
-						pokemon.getPokemonType(),
-						pokemon.getHeight(),
-						pokemon.getWeight(),
-						pokemon.getDesc());
-				result.add(response);
-			}
-			return ResponseEntity.ok(result).getBody();
-		} catch(Exception e) {
+	public ResponseEntity<List<PokemonResponse>> findAll(){
+		List<Pokemon> getAllPokemon = _pokeSrv.GetAllPokemon();
+		List<PokemonResponse> result = new ArrayList<PokemonResponse>();
+		
+		if(getAllPokemon.isEmpty()){
 			throw new NoDataFoundException();
 		}
+		
+		for (var pokemon : getAllPokemon) {
+			PokemonResponse response = new PokemonResponse(
+					pokemon.getId(),
+					pokemon.getName(),
+					pokemon.getSpecies(),
+					pokemon.getPokemonType(),
+					pokemon.getHeight(),
+					pokemon.getWeight(),
+					pokemon.getDesc());
+			result.add(response);
+		}
+		return ResponseEntity.ok(result);
 	}
 	
 	@GetMapping("/{Id}")
-	public PokemonResponse getPokemon(@PathVariable Integer Id) {
-		Pokemon pokemon = _pokeSrv.GetPokemon(Id);
+	public ResponseEntity<PokemonResponse> getPokemon(@PathVariable Integer Id) {
+		Optional<Pokemon> pokemon = _pokeSrv.GetPokemon(Id);
 		
 		if(!_pokeSrv.PokemonExists(Id)) {
 			throw new NoDataFoundException();
 		}
 		
 		PokemonResponse response = new PokemonResponse(
-				pokemon.getId(),
-				pokemon.getName(),
-				pokemon.getSpecies(),
-				pokemon.getPokemonType(),
-				pokemon.getHeight(),
-				pokemon.getWeight(),
-				pokemon.getDesc());
+				pokemon.get().getId(),
+				pokemon.get().getName(),
+				pokemon.get().getSpecies(),
+				pokemon.get().getPokemonType(),
+				pokemon.get().getHeight(),
+				pokemon.get().getWeight(),
+				pokemon.get().getDesc());
 		
-		return ResponseEntity.ok(response).getBody();
+		return ResponseEntity.ok(response);
 	}
 	
 	@ResponseStatus(HttpStatus.CREATED)
@@ -98,7 +95,7 @@ public class PokemonController {
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			log.info("error: " + e.toString());
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new InternalErrorException();
 		}
 	}
 	
@@ -124,7 +121,7 @@ public class PokemonController {
 			}
 		} catch (Exception e) {
 			log.info("error: " + e.toString());
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new InternalErrorException();
 		}
 	}
 	

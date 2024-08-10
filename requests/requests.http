@@ -11,7 +11,7 @@ content-type: application/json
     "name":"Squirtle",
     "species":"tinyturtle",
     "pokemonType":["water"],
-    "height":"1ft 08inches",
+    "height":10,
     "weight":20,
     "desc":"After birth, its back swells and harderns into a shell. Powerfully sprays foam from its mouth."
 }
@@ -40,3 +40,16 @@ content-type: application/json
 
 DELETE http://localhost:8042/api/pokemon/001
 content-type: application/json
+
+###
+POST http://localhost:8042/api/pokemon
+content-type: application/json
+{
+    "id":1,
+    "name":"asdasda",
+    "species":"tinyturtle",
+    "pokemonType":[],
+    "height":"2",
+    "weight":20,
+    "desc":"After birth, its back swells and harderns into a shell. Powerfully sprays foam from its mouth."
+}
