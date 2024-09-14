@@ -25,23 +25,26 @@ def getTypes(types: list)-> list:
 		return ptypes
 	return [types[0]["type"]["name"]]
 
-for i in range(1,152):
-	try:
-		pokemon = requests.get("https://pokeapi.co/api/v2/pokemon/" + str(i) + "/").json()
-		ptypes = getTypes(pokemon["types"])
-		desc = getDesc(pokemon['name'])
+def load():
+	for i in range(1,152):
+		try:
+			pokemon = requests.get("https://pokeapi.co/api/v2/pokemon/" + str(i) + "/").json()
+			ptypes = getTypes(pokemon["types"])
+			desc = getDesc(pokemon['name'])
 
-		p = {
-			"id" : pokemon["id"],
-			"name": pokemon["name"],
-			"species": pokemon["species"]["name"],
-			"pokemonType": ptypes,
-			"height": pokemon["height"],
-			"weight": pokemon["weight"],
-			"desc": desc
-		}
-		print(p)
-		requests.post(url="http://localhost:8042/api/pokemon", json = p)		
-		break
-	except:
-		continue
+			p = {
+				"id" : pokemon["id"],
+				"name": pokemon["name"],
+				"species": pokemon["species"]["name"],
+				"pokemonType": ptypes,
+				"height": pokemon["height"],
+				"weight": pokemon["weight"],
+				"desc": desc
+			}
+			print(p)
+			requests.post(url="http://localhost:8042/api/pokemon", json = p)		
+		except:
+			continue
+		
+if __name__ == "__main__":
+	load()
