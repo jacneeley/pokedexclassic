@@ -3,9 +3,12 @@ package local.classicdex.pokedexclassic.pokemon;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface IPokemonSrv {
 	public List<Pokemon>GetAllPokemon();
-	public List<Pokemon>FindAllByType();
+	//public List<Pokemon>FindAllByType();
 	public Optional<Pokemon> GetPokemon(Integer Id);
 	void CreatePokemon(Pokemon pokemon);
 	void UpsertPokemon(Pokemon pokemon);

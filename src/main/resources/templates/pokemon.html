@@ -32,8 +32,8 @@
 		<div class="info">
 			<p th:text="${pokemon.Name.toUpperCase()}"></p>
 		    <p th:text="${pokemon.Species.toUpperCase()}"></p>	
-			<p th:text="${'HT ' + pokemon.getHeightFt()}"></p>
-			<p th:text="${'WT ' + pokemon.getWeightLbs() + 'lb'}"></p>
+			<p th:text="${'HT ' + pokemon.getHeightMetric()} + 'm'"></p>
+			<p th:text="${'WT ' + pokemon.getWeightMetric() + 'kg'}"></p>
 		</div>
 		<hr />
 		<div class="desc">

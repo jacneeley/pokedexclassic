@@ -113,11 +113,11 @@ public class PokemonController {
 					request.desc() );
 			
 			if(_pokeSrv.PokemonExists(pokemon.getId())) {
-				return createPokemon(request);
-			}
-			else {
 				_pokeSrv.UpsertPokemon(pokemon);
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			else {
+				return createPokemon(request);
 			}
 		} catch (Exception e) {
 			log.info("error: " + e.toString());

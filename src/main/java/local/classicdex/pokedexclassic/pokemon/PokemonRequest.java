@@ -18,7 +18,6 @@ public record PokemonRequest(
 		double height,
 		@Positive
 		double weight,
-		@NotEmpty
 		String desc) {
 			public PokemonRequest {
 				if(id.equals(0) || id == null){
@@ -41,10 +40,6 @@ public record PokemonRequest(
 				}
 				if(weight < 0) {
 					throw new IllegalArgumentException("'Weight' cannot be negative");
-				}
-				
-				if(desc.isBlank()) {
-					throw new IllegalArgumentException("'desc' cannot be empty");
 				}
 			}
 	}

@@ -1,5 +1,6 @@
 package local.classicdex.pokedexclassic.pokemon;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public record PokemonResponse(
@@ -40,12 +41,13 @@ public record PokemonResponse(
 		return this.Desc.split("\n\n");
 	}
 
-	public double getWeightLbs(){
-		return Math.round(this.Weight * .22046226);	
+	public double getWeightMetric(){
+		return this.Weight * .100;	
 	}
 	
-	public double getHeightFt() {
-		return Math.round(this.Height * .328);
+	public double getHeightMetric() {
+		DecimalFormat df = new DecimalFormat("####.#");
+		return Double.valueOf(df.format(this.Height * .100));
 	}
 	
 	public boolean isFirstOne() {

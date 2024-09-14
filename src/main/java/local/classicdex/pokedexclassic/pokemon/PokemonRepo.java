@@ -1,5 +1,6 @@
 package local.classicdex.pokedexclassic.pokemon;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +19,9 @@ public class PokemonRepo implements IPokemonRepo{
 
 	@Override
 	public List<Pokemon> GetAllPokemon() {
-		return  _jdbcClient.sql("SELECT * FROM POKEMON")
-				.query(Pokemon.class).list();
+		List<Pokemon> pokemon = new ArrayList<>();  
+		var q = _jdbcClient.sql("SELECT * FROM POKEMON").query();
+		return pokemon;
 	}
 
 	@Override
@@ -55,13 +57,13 @@ public class PokemonRepo implements IPokemonRepo{
 
 	@Override
 	public void UpdatePokemon(Pokemon pokemon, Integer Id) {
-		var updated = _jdbcClient.sql("UPDATE POKEMON SET"
-				+ "name=?"
-				+ "species=?"
-				+ "pokemon_type=?"
-				+ "height=?"
-				+ "weight=?"
-				+ "desc where id=?")
+		var updated = _jdbcClient.sql("UPDATE POKEMON SET "
+				+ "name=?,"
+				+ "species=?,"
+				+ "pokemon_type=?,"
+				+ "height=?,"
+				+ "weight=?,"
+				+ "desc=? where id=?")
 				.params(List.of(pokemon.getName(), pokemon.getSpecies(), pokemon.listToString(),pokemon.getHeight(), pokemon.getWeight(), pokemon.getDesc(), Id))
 				.update();
 		Assert.state(updated == 1, "Failed to update: " + pokemon.toString());
