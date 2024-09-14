@@ -70,7 +70,7 @@ Returns all Pokemon as a list of JSON Objects.
   }
 ```
 
-findallbyid: ```localhost:8042/api/pokemon/7```
+findallbyid: ```localhost:8042/api/pokemon/1```
 
 Returns a singular Pokemon as a JSON Object.
 ```
