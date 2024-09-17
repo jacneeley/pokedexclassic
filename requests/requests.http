@@ -27,18 +27,18 @@ PUT http://localhost:8042/api/pokemon
 content-type: application/json
 
 {
-    "id":"001",
-    "name":"Squirtle",
-    "species":"tinyturtle",
-    "pokemonType":["water"],
-    "height":"1ft 08inches",
-    "weight":20,
-    "desc":"After birth, its back swells and harderns into a shell. Powerfully sprays foam from its mouth."
+  "id": 151,
+  "name": "mew",
+  "species": "mew",
+  "pokemonType": ["psychic"],
+  "height": 4,
+  "weight": 40,
+  "desc": "Red/Blue: So rare that it is still said to be a mirage by many experts. Only a few people have seen it worldwide.\n\nYellow: When viewed through a microscope, this Pokémon's short, fine, delicate hair can be seen.\n"
 }
 
 ###
 
-DELETE http://localhost:8042/api/pokemon/001
+DELETE http://localhost:8042/api/pokemon/151
 content-type: application/json
 
 ###
