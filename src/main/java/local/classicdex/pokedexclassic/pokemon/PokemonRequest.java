@@ -13,7 +13,7 @@ public record PokemonRequest(
 		@NotEmpty
 		String species,
 		@NotEmpty
-		List<String> pokemonType,
+		String[] pokemonType,
 		@Positive
 		double height,
 		@Positive
@@ -32,7 +32,7 @@ public record PokemonRequest(
 				if(species.isBlank()) {
 					throw new IllegalArgumentException("'species' cannot be empty");
 				}
-				if(pokemonType.isEmpty()) {
+				if(pokemonType.length == 0) {
 					throw new IllegalArgumentException("'pokemonType' cannot be empty");
 				}
 				if(height < 0) {

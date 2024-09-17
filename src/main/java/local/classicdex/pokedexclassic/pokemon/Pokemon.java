@@ -10,7 +10,7 @@ public class Pokemon {
 	private Integer Id;
 	private String Name;
 	private String Species;
-	private List<String> PokemonType;
+	private String[] PokemonType;
 	private double Height;
 	private double Weight;
 	private String Desc;
@@ -27,7 +27,7 @@ public class Pokemon {
 		return Species;
 	}
 	
-	public List<String> getPokemonType() {
+	public String[] getPokemonType() {
 		return PokemonType;
 	}
 	
@@ -47,7 +47,7 @@ public class Pokemon {
 			Integer id, 
 			String name, 
 			String species, 
-			List<String> pokemonType, 
+			String[] pokemonType, 
 			double height, 
 			double weight,
 			String desc) 

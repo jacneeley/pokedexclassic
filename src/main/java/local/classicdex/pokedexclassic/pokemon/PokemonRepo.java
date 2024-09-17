@@ -1,6 +1,5 @@
 package local.classicdex.pokedexclassic.pokemon;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,9 +18,9 @@ public class PokemonRepo implements IPokemonRepo{
 
 	@Override
 	public List<Pokemon> GetAllPokemon() {
-		List<Pokemon> pokemon = new ArrayList<>();  
-		var q = _jdbcClient.sql("SELECT * FROM POKEMON").query();
-		return pokemon;
+		  
+		return _jdbcClient.sql("SELECT * FROM POKEMON")
+				.query(Pokemon.class).list();
 	}
 
 	@Override

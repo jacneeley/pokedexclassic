@@ -7,7 +7,7 @@ public record PokemonResponse(
 	int Id,
 	String Name,
 	String Species,
-	List<String> PokemonType,
+	String[] PokemonType,
 	double Height,
 	double Weight,
 	String Desc
