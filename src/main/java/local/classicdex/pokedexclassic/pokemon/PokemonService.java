@@ -55,7 +55,7 @@ public class PokemonService implements IPokemonSrv{
 
 	@Override
 	public boolean PokemonExists(Integer Id) {
-		return _pokeRepo.FindById(Id).get().getId().equals(Id);
+		return _pokeRepo.FindById(Id).isPresent();
 	}
 	
 //	@PostConstruct
