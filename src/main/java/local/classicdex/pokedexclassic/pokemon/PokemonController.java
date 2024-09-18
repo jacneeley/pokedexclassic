@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import local.classicdex.pokedexclassic.DexApp;
+import local.classicdex.pokedexclassic.app.AppKey;
 import local.classicdex.pokedexclassic.pokemon.exceptions.InternalErrorException;
 import local.classicdex.pokedexclassic.pokemon.exceptions.NoDataFoundException;
 
@@ -30,9 +31,11 @@ public class PokemonController {
 	private static final Logger log = LoggerFactory.getLogger(DexApp.class);
 	
 	private final PokemonService _pokeSrv;
+	private final AppKey _appKey;
 	
-	public PokemonController(PokemonService pokeSrv) {
+	public PokemonController(PokemonService pokeSrv, AppKey appKey) {
 		this._pokeSrv = pokeSrv;
+		this._appKey = appKey;
 	}
 	
 	@GetMapping("/")
@@ -41,7 +44,7 @@ public class PokemonController {
 		List<PokemonResponse> result = new ArrayList<PokemonResponse>();
 		
 		if(getAllPokemon.isEmpty()){
-			throw new NoDataFoundException();
+			throw new NoDataFoundException("Response Empty");
 		}
 		
 		for (var pokemon : getAllPokemon) {
@@ -59,11 +62,11 @@ public class PokemonController {
 	}
 	
 	@GetMapping("/{Id}")
-	public ResponseEntity<PokemonResponse> getPokemon(@PathVariable Integer Id) {
-		Optional<Pokemon> pokemon = _pokeSrv.GetPokemon(Id);
+	public ResponseEntity<PokemonResponse> getPokemon(@PathVariable Integer id) {
+		Optional<Pokemon> pokemon = _pokeSrv.GetPokemon(id);
 		
-		if(!_pokeSrv.PokemonExists(Id)) {
-			throw new NoDataFoundException();
+		if(!_pokeSrv.PokemonExists(id)) {
+			throw new NoDataFoundException(id.toString());
 		}
 		
 		PokemonResponse response = new PokemonResponse(
@@ -79,8 +82,11 @@ public class PokemonController {
 	}
 	
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping("")
-	public ResponseEntity<Object> createPokemon(@Valid @RequestBody PokemonRequest request) {
+	@PostMapping("/{key}")
+	public ResponseEntity<Object> createPokemon(@PathVariable String key, @Valid @RequestBody PokemonRequest request) {
+		if(!key.equals(_appKey.getKey())) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN); 
+		}
 		try {
 			Pokemon pokemon = new Pokemon(
 					request.id(),
@@ -95,13 +101,16 @@ public class PokemonController {
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			log.info("error: " + e.toString());
-			throw new InternalErrorException();
+			throw new InternalErrorException("Pokemon could not be created. Something went wrong...");
 		}
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PutMapping("")
-	public ResponseEntity<Object> upsertPokemon(@Valid @RequestBody PokemonRequest request) {
+	@PutMapping("/{key}")
+	public ResponseEntity<Object> upsertPokemon(@PathVariable String key, @Valid @RequestBody PokemonRequest request) {
+		if(!key.equals(_appKey.getKey())) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN); 
+		}
 		try {
 			Pokemon pokemon = new Pokemon(
 					request.id(),
@@ -112,26 +121,27 @@ public class PokemonController {
 					request.weight(),
 					request.desc() );
 			
-			if(_pokeSrv.PokemonExists(pokemon.getId())) {
-				_pokeSrv.UpsertPokemon(pokemon);
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			if(!_pokeSrv.PokemonExists(pokemon.getId())) {
+				return createPokemon(key, request);
 			}
-			else {
-				return createPokemon(request);
-			}
+			_pokeSrv.UpsertPokemon(pokemon);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			log.info("error: " + e.toString());
-			throw new InternalErrorException();
+			throw new InternalErrorException("Pokemon could not be updated or created. Something went wrong...");
 		}
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@DeleteMapping("/{Id}")
-	public ResponseEntity<Object> deletePokemon(@PathVariable Integer Id) {
-		if(_pokeSrv.PokemonExists(Id)) {
-			_pokeSrv.DeletePokemon(Id);
+	@DeleteMapping("/{key}/{id}")
+	public ResponseEntity<Object> deletePokemon(@PathVariable String key, @PathVariable Integer id) {
+		if(!key.equals(_appKey.getKey())) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN); 
+		}
+		if(_pokeSrv.PokemonExists(id)) {
+			_pokeSrv.DeletePokemon(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		throw new NoDataFoundException();
+		throw new NoDataFoundException(id.toString());
 	}
 }
