@@ -33,6 +33,26 @@ public record PokemonResponse(
 		}
 	}
 	
+	public String formatIdForIndex() {
+		if(Id > 999) {
+			throw new IllegalArgumentException("Id is out of bounds...");
+		}
+		else if(Id < 100){
+			if(Id >= 10) {
+				return "0" + Integer.toString(Id);
+			}
+			else {
+				return "00" + Integer.toString(Id);
+			}
+		}
+		else if (Id > 99) {
+			return Integer.toString(Id);
+		}
+		else {
+			throw new IllegalArgumentException("Bad Request...");
+		}
+	}
+	
 	public String getImg() {
 		return "assets/pokesprites/" + Integer.valueOf(Id) + ".png";
 	}

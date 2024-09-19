@@ -28,13 +28,13 @@
 			<table>
 		        <thead>
 		         <tr>
-		           <th><h2>CONTENTS</h2></th>
+		           <td><h2 style="font-size:40px; margin-bottom:-.5rem;">CONTENTS</h2></td>
 		        </tr>
 		        </thead>
 		        <tbody>
 		          <tr th:each="pokemon : ${allPokemon}">
-		             <td><p th:text="${pokemon.formatId()}"></p></td>
-		             <td class=".pokedex-entry" >
+		             <td class="pokedex-entry">
+						<p th:text="${pokemon.formatIdForIndex()}"></p>
 						<a th:href="@{/{id}(id=${pokemon.Id})}">
 							<img class="pokeball" th:src="@{assets/misc/pokeball.png}" alt="pokeball" />
 							<p style="display:inline;" th:text="${pokemon.Name.toUpperCase()}"></p>

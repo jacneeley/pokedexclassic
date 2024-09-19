@@ -1,10 +1,6 @@
 package local.classicdex.pokedexclassic.pokemon;
 
-import java.util.List;
 import java.util.Objects;
-
-import jakarta.persistence.Entity;
-
 
 public class Pokemon {
 	private Integer Id;
