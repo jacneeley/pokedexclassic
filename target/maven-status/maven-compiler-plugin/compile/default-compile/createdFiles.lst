@@ -1,0 +1,15 @@
+local/classicdex/pokedexclassic/pokemon/PokemonController.class
+local/classicdex/pokedexclassic/pokemon/exceptions/NoDataFoundException.class
+local/classicdex/pokedexclassic/app/AppConstants.class
+local/classicdex/pokedexclassic/pokemon/PokemonRequest.class
+local/classicdex/pokedexclassic/pokemon/PokemonRepo.class
+local/classicdex/pokedexclassic/pokemon/exceptions/InternalErrorException.class
+local/classicdex/pokedexclassic/pokemon/Pokemon.class
+local/classicdex/pokedexclassic/pokemon/PokemonService.class
+local/classicdex/pokedexclassic/app/AppController.class
+local/classicdex/pokedexclassic/pokemon/ControllerAdvisor.class
+local/classicdex/pokedexclassic/DexApp.class
+local/classicdex/pokedexclassic/pokemon/IPokemonRepo.class
+local/classicdex/pokedexclassic/pokemon/PokemonResponse.class
+local/classicdex/pokedexclassic/pokemon/IPokemonSrv.class
+local/classicdex/pokedexclassic/app/AppKey.class

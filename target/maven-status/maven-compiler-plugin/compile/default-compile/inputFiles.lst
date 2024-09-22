@@ -1,9 +1,15 @@
 /home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/DexApp.java
+/home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/app/AppConstants.java
+/home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/app/AppController.java
+/home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/app/AppKey.java
+/home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/pokemon/ControllerAdvisor.java
+/home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/pokemon/IPokemonRepo.java
 /home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/pokemon/IPokemonSrv.java
-/home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/pokemon/PokeResponse.java
 /home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/pokemon/Pokemon.java
 /home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/pokemon/PokemonController.java
+/home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/pokemon/PokemonRepo.java
 /home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/pokemon/PokemonRequest.java
 /home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/pokemon/PokemonResponse.java
 /home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/pokemon/PokemonService.java
-/home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/pokemon/View.java
+/home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/pokemon/exceptions/InternalErrorException.java
+/home/jak/eclipse-workspace/pokedexclassic/src/main/java/local/classicdex/pokedexclassic/pokemon/exceptions/NoDataFoundException.java
