@@ -61,7 +61,7 @@ public class PokemonController {
 		return ResponseEntity.ok(result);
 	}
 	
-	@GetMapping("/{Id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<PokemonResponse> getPokemon(@PathVariable Integer id) {
 		Optional<Pokemon> pokemon = _pokeSrv.GetPokemon(id);
 		
