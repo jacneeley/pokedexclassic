@@ -44,7 +44,7 @@ jobs:
         
       - name: Push to prod branch
         env:
-          GITHUB_TOKEN: ${{ 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 }}
+          GITHUB_TOKEN: ${{ secrets.GHA_TOKEN}}
         run: |
           git checkout -B prod
           git add .
