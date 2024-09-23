@@ -34,6 +34,7 @@ public class AppController {
 	@GetMapping("/")
 	public String viewAllPokemon(Model model) {
 		ResponseEntity<List<PokemonResponse>> response = _pokeController.findAll();
+		model.addAttribute("ver", _const.getVer());
 		model.addAttribute("allPokemon", response.getBody());
 		return "index";
 	}
@@ -41,12 +42,14 @@ public class AppController {
 	@GetMapping("/{Id}")
 	public String viewPokemon(Model model, @PathVariable Integer Id) {
 		ResponseEntity<PokemonResponse> response = _pokeController.getPokemon(Id);
+		model.addAttribute("ver", _const.getVer());
 		model.addAttribute("pokemon",response.getBody());
 		return "pokemon";
 	}
 	
 	@GetMapping("/about")
-	public String viewAbout() {
+	public String viewAbout(Model model) {
+		model.addAttribute("ver", _const.getVer());
 		return "about";
 	}
 	
