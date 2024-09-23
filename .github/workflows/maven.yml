@@ -36,12 +36,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
-      - name: Push to prod branch
+
+      - name: set up Git
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        
+      - name: Push to prod branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GHA_TOKEN}}
+        run: |
           git checkout -B prod
           git add .
           git commit -m "Deploying to production from deploy branch" || echo "No changes to commit"
-          git push origin prod --force
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} prod --force
