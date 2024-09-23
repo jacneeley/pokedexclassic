@@ -34,7 +34,7 @@ public class AppController {
 	@GetMapping("/")
 	public String viewAllPokemon(Model model) {
 		ResponseEntity<List<PokemonResponse>> response = _pokeController.findAll();
-		model.addAttribute("ver", _const.getVer());
+		model.addAttribute("const", _const);
 		model.addAttribute("allPokemon", response.getBody());
 		return "index";
 	}

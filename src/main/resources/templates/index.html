@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <title>PokeDex Classic</title>
 <link th:href="@{/styles/global.css}" rel="stylesheet" />
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jacneeley/gen1spriterepo/refs/heads/main/misc/pokeball.png">
+<link rel="icon" type="image/png" th:href="${const.getPokeballPath()}">
 <style th:inline="css" type="text/css" media="screen, print">
 	@font-face {
 			font-family: "PixelifySans";
@@ -22,6 +22,7 @@
 	<nav>
 		<h1><a href="/">POKeDEX Classic</a></h1>
 	 	<a href="/about">about</a>
+		<span style="float:right;" th:text="${const.getVer()}"></span>
 	</nav>
     <div class="content">
 		<div class="sub-content no-shadow">
@@ -36,7 +37,7 @@
 		             <td class="pokedex-entry">
 						<p th:text="${pokemon.formatIdForIndex()}"></p>
 						<a th:href="@{/{id}(id=${pokemon.Id})}">
-							<img class="pokeball" src="https://raw.githubusercontent.com/jacneeley/gen1spriterepo/refs/heads/main/misc/pokeball.png" alt="pokeball" />
+							<img class="pokeball" th:src="${const.getPokeballPath()}" alt="pokeball" />
 							<p style="display:inline;" th:text="${pokemon.Name.toUpperCase()}"></p>
 						</a>
 					</td>

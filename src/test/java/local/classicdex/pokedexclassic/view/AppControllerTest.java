@@ -102,7 +102,7 @@ public class AppControllerTest {
 		System.out.println(result.getModelAndView().getModel());
 		PokemonResponse pokeObj = (PokemonResponse) result.getModelAndView().getModel().get("pokemon");
 		Assertions.assertEquals(response.getBody().Id(), pokeObj.Id());
-		Assertions.assertTrue(pageResponse.contains(String.format("<img src=\"assets/pokesprites/%d.png\" \n"
+		Assertions.assertTrue(pageResponse.contains(String.format("<img src=\"https://raw.githubusercontent.com/jacneeley/gen1spriterepo/refs/heads/main/pokemon/" + "%d" + ".png\" \n"
 				+ "			alt=\"%s\"/>", pokeObj.Id(),pokeObj.Name().toUpperCase())));
 		Assertions.assertTrue(pageResponse.contains(String.format("<p>%s</p>", pokeObj.formatId())));
 		Assertions.assertTrue(pageResponse.contains(String.format("<p>%s</p>", pokeObj.Name().toUpperCase())));
