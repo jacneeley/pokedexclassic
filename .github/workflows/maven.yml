@@ -44,9 +44,9 @@ jobs:
         
       - name: Push to prod branch
         env:
-          GITHUB_TOKEN: ${{ secrets.GHA_TOKEN}}
+          GITHUB_TOKEN: ${{ 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 }}
         run: |
           git checkout -B prod
           git add .
           git commit -m "Deploying to production from deploy branch" || echo "No changes to commit"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} prod --force
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} prod
