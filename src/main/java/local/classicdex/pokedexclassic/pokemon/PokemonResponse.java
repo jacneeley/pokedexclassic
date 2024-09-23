@@ -54,7 +54,7 @@ public record PokemonResponse(
 	}
 	
 	public String getImg() {
-		return "assets/pokesprites/" + Integer.valueOf(Id) + ".png";
+		return "https://raw.githubusercontent.com/jacneeley/gen1spriterepo/refs/heads/main/pokemon/" + Integer.valueOf(Id) + ".png";
 	}
 	
 	public String[] parseDesc() {
